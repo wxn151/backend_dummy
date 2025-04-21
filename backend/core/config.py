@@ -22,4 +22,3 @@ ALGORITHM = os.getenv("ALGORITHM")
 
 # reset link base
 RESET = os.getenv("RESET_LINK")
-ACTIVATE = os.getenv("ACTIVATE_LINK")
