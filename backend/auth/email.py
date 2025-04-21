@@ -1,7 +1,6 @@
 import smtplib
 from email.mime.text import MIMEText
-from email.utils import formataddr
-from backend.core.config import MAIL, PASSWORD, RESET, ACTIVATE
+from backend.core.config import MAIL, PASSWORD, RESET
 
 class EmailService:
     def send_email(self, to: str, subject: str, body: str):
@@ -24,8 +23,8 @@ class GmailService(EmailService):
         server.send_message(msg)
         server.quit()
 
-def build_confirmation_body(token: str) -> str:
-    link = f"{ACTIVATE}?token={token}"
+def build_confirmation_body(token: str) -> str
+    link = f"{RESET}confirmation-email/{token}"
     return f""" 
 Welcome to Behemoth 👾
 
@@ -36,7 +35,7 @@ This link will expire in 30 minutes.
 """
 
 def send_password_reset_link(to_email: str, token: str, email_service: EmailService):
-    link = f"{RESET}?token={token}"
+    link = f"{RESET}reset-password/{token}"
     body = f"""
 Your requested reset your Behemoth password (if your didn't, please ignore this).
 To continue, click the link below (is valid for 30 minutes):
