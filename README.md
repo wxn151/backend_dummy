@@ -16,6 +16,7 @@ Project demo: https://behemoth-backend.onrender.com/
 
 ```md
 git clone https://github.com/wxn151/backend_dummy.git
+cd back_dummy
 ```
 
 2. Create a virtual environment
