@@ -1,23 +1,25 @@
 import os
-# from dotenv import load_dotenv
 
-# load_dotenv()
+#from dotenv import load_dotenv
+#load_dotenv()
 
-title = "Back end con FastAPI"
-description = "Documentación de API"
+## system
+title = os.getenv("TITLE")
+description = os.getenv("DESCRIPTION")
 
-# DATABASE_URL = os.getenv("DATABASE_URL")
-DATABASE_URL = "postgresql://postgres:Donut.238@localhost:5432/foreign"
-# SECRET_KEY = os.getenv("SECRET_KEY")
-SECRET_KEY = "game_boy_advance_2001"
+# conn
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+# hash
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # credentials SMTP
-MAIL = "behemothsystem@gmail.com"
-PASSWORD = "nrub ezre zibj iklm "
+MAIL = os.getenv("MAIL")
+PASSWORD = os.getenv("PASSWORD")
 
 # encrytion ALGORITHM
-ALGORITHM = "HS256"
+ALGORITHM = os.getenv("ALGORITHM")
 
 # reset link base
-RESET = "http://localhost:5173/reset-password/"
-ACTIVATE = "http://localhost:5173/confirm-email/"
+RESET = os.getenv("RESET_LINK")
+ACTIVATE = os.getenv("ACTIVATE_LINK")
