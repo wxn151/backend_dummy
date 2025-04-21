@@ -1,52 +1,44 @@
-# Demo App (with auth)
+# Demo App (with FastAPI)
 
-A back end built with FastAPI and PostgreSQL to demonstrate how to build a full-stack web application using modern web technologies.
+A basic back end built with FastAPI and Auth to demonstrate how to build a full-stack web application using modern web technologies.
 
 Project demo: https://behemoth-backend.onrender.com/
 
 ## Features
 
-- It allows to user registration, validate mail and recover password (smtp server).
-- Schemas implemented to validate input and output data
+- It allows to user registration, sending mail confirmation and recovering password (smtp server).
 - JWT and OAuth2 implementation.
-- JWT and OAuth2 implementation.
-- Migration to db with Alembic
+- Migration DB (postgres) with Alembic
 
 ## Getting started: Without Docker
 
-a) Clone repository into your machine
+1. Clone repository into your machine
 
 ```md
 git clone https://github.com/wxn151/backend_dummy.git
 ```
 
-b) Create a virtual environment
+2. Create a virtual environment
 
-<details>
-<summary>Steps</summary>
-1. Creating a virtual environment
-
-```md
+```bash
 python3 -m venv venv
-or python -m venv venv (on windows) 
-```
+python -m venv venv (on windows) 
 
-2.Activating it
-
-```md
+# activating it
 source venv/bin/activate
-or .\venv\Scripts\activate (on windows)
+.\venv\Scripts\activate (on windows)
 ```
-</details>
 
 
-c) Installing dependencies
+3. Installing dependencies
 
-```md
+```bash
 pip install -r requirements.txt
 ```
 
-d) Create .env file
+4. Create .env file
+
+Create a .env file in the root of your project and add the necessary environment variables.
 ```md
 TITLE = your_title_app
 DESCRIPTION = your_description_app
@@ -55,23 +47,23 @@ SECRET_KEY = your_secret_key
 MAIL = your_smtp_mail_address
 PASSWORD = your_smtp_password
 ALGORITHM = your_encryption_algorithm # suggest HS256
-SAAS_LINK = your_front_end_link
+RESET = your_front_end_app
 ```
 
-e) Migrate with help of Alembic
+5. Migrate with help of Alembic
 
-###### Linux
 ```md
+# linux
 alembic revision --autogenerate -m "initial"
 alembic upgrade head
 ```
-###### Windows
 ```md
+# windows
 python -m alembic revision --autogenerate -m "initial"
 python -m alembic upgrade head
 ```
 
-f) Run app
+6. Run app
 
 ```md
 uvicorn backend.main:app --host 0.0.0.0 --port 8000 
@@ -90,15 +82,10 @@ docker compose -f .\docker-compose-dev.yml down
 ```
 
 ## Documentation
-1. Swagger UI
+Swagger UI
 
     ```linux
     http://localhost:8000/docs
-    ```
-2. Redocly
-
-    ```linux
-    http://localhost:8000/redoc
     ```
 
 ## Contributing
