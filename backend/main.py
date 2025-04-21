@@ -1,15 +1,13 @@
 """
-░░▀ ░▀ ▀░▀▀░░
-    w x n
-░░▄░▄ ░▄░▄ ░░
+░░░ ░░▀ ░░▀▀░░░
+     w x n
+░░░▄ ░░░▄░▄  ░░
 """
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
-from fastapi.security import OAuth2PasswordBearer
 from fastapi.openapi.utils import get_openapi
 from backend.core.config import description, title
 from .routers import (auth, root, user)
-#, visit, raking, docs, easter_egg)
 
 app = FastAPI(
     title=title,
@@ -36,10 +34,7 @@ app.include_router(root.router)
 app.include_router(auth.router)
 app.include_router(user.router)
 # app.include_router(docs.router)
-# app.include_router(visit.router)
-# app.include_router(raking.router)
 
-# Swagger: forzar esquema Bearer y eliminar client_id, username, etc.
 def custom_openapi():
     if app.openapi_schema:
         return app.openapi_schema
