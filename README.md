@@ -71,6 +71,17 @@ uvicorn backend.main:app --host 0.0.0.0 --port 8000
 
 ## Getting started: With Docker
 
+a) Edit .env file
+
+Add environment variables (including the previous ones).
+```md
+POSTGRES_HOST=db
+POSTGRES_PORT=5432
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=your_password
+POSTGRES_DB=your_db
+```
+
 a) Start
 ```md
 docker compose -f .\docker-compose-dev.yml up -d
