@@ -72,7 +72,7 @@ uvicorn backend.main:app --host 0.0.0.0 --port 8000
 
 ## Getting started: With Docker
 
-a) Edit .env file
+1. Edit .env file
 
 Add environment variables (including the previous ones).
 ```md
@@ -83,12 +83,12 @@ POSTGRES_PASSWORD=your_password
 POSTGRES_DB=your_db
 ```
 
-a) Start
+2. Start
 ```md
 docker compose -f .\docker-compose-dev.yml up -d
 ```
 
-b) Stop
+3. Stop
 ```md
 docker compose -f .\docker-compose-dev.yml down
 ```
