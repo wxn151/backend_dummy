@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+sqlalchemy
+python-dotenv
+passlib[bcrypt]
+python-jose[cryptography]
+
+pydantic[email]
+psycopg2-binary
+pytest
+email-validator
+jose!=1.0.0,!=0.1.0,!=0.0.0  # prefer: blocking TECHNIC
