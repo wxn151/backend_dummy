@@ -1,132 +1,85 @@
-# FastAPI Social Media App
+# Demo App (with auth)
 
-A social media web application built with FastAPI, PostgreSQL and *soon* Jinja2 Templates. This project is intended to demonstrate how to build a full-stack web application using modern web technologies.
+A back end built with FastAPI and PostgreSQL to demonstrate how to build a full-stack web application using modern web technologies.
+
+Project demo: https://behemoth-backend.onrender.com/
 
 ## Features
 
-- It allows to create, delete and update a post
-- It retrieves all of the available posts or just one by using an ID
-- User registration
+- It allows to user registration, validate mail and recover password (smtp server).
 - Schemas implemented to validate input and output data
-- Users cannot update nor delete posts that do not own
-- Users can vote posts: Add and delete votes to a post
-- User authentication and authorization using JWT tokens.
-
-Language: Python v3.11.1
-
-## Tech stack
-
-1. Backend: FastAPI v0.92.0 FastAPI - Python web framework.
-2. Fronted: Jinja2 Templates will be implemented in order to build a frontend
-3. Testing: pytest v7.2.2 (fixtures, parametrization and HTML/CSS report)
-4. Containerization: Docker v20.10.23
-5. Alembic: v1.10.2
-6. Postman: v10.12.7 Collections and environment variables provided at [postman](https://github.com/mvarrone/fastapi-social-media-app/tree/main/postman) folder on this repository
-7. Database: PostgreSQL v15.2
-8. Models: SQLAlchemy v1.4.23
-9. Security:
-    - JWT and OAuth2 implementation
-    - Hashed passwords in database using passlib v1.7.4
-10. CI/CD: Implemented using GitHub Actions
-    - Build: 
-        - Pull repo
-        - Install python 3
-        - Upgrade pip
-        - Install all dependencies
-        - Test
-        - Docker: Login to Docker Hub, build, push and digest the image
-
-    - Deploy:
-        - Deploy to a Ubuntu server on Digital Ocean
+- JWT and OAuth2 implementation.
+- JWT and OAuth2 implementation.
+- Migration to db with Alembic
 
 ## Getting started: Without Docker
 
 a) Clone repository into your machine
 
 ```md
-git clone https://github.com/mvarrone/fastapi-social-media-app.git
-cd fastapi-social-media-app
+git clone https://github.com/wxn151/backend_dummy.git
 ```
 
 b) Create a virtual environment
 
 <details>
-<summary>On Windows</summary>
-1.Creating a virtual environment
-
-```md
-python -m venv venv
-```
-
-2.Activating it
-
-a) Using CMD
-
-```md
-.\venv\Scripts\activate.bat
-```
-
-b) Using PowerShell
-
-```md
-.\venv\Scripts\Activate.ps1
-```
-
-3.Installing dependencies
-
-```md
-pip install -r requirements.txt
-```
-
-4.(OPTIONAL) Deactivating the virtual environment
-
-```md
-deactivate
-```
-</details>
-
-<details>
-<summary>On Linux/Mac</summary>
+<summary>Steps</summary>
 1. Creating a virtual environment
 
 ```md
 python3 -m venv venv
+or python -m venv venv (on windows) 
 ```
 
 2.Activating it
 
 ```md
 source venv/bin/activate
+or .\venv\Scripts\activate (on windows)
 ```
+</details>
 
-3.Installing dependencies
+
+c) Installing dependencies
 
 ```md
 pip install -r requirements.txt
 ```
 
-4.(OPTIONAL) Deactivating the virtual environment
-
+d) Create .env file
 ```md
-deactivate
+TITLE = your_title_app
+DESCRIPTION = your_description_app
+DATABASE_URL = your_db_connection 
+SECRET_KEY = your_secret_key
+MAIL = your_smtp_mail_address
+PASSWORD = your_smtp_password
+ALGORITHM = your_encryption_algorithm # suggest HS256
+SAAS_LINK = your_front_end_link
 ```
-</details>
 
-c) Run app
+e) Migrate with help of Alembic
+
+###### Linux
+```md
+alembic revision --autogenerate -m "initial"
+alembic upgrade head
+```
+###### Windows
+```md
+python -m alembic revision --autogenerate -m "initial"
+python -m alembic upgrade head
+```
+
+f) Run app
 
 ```md
-uvicorn app.main:app --host 0.0.0.0 --port 8000 
+uvicorn backend.main:app --host 0.0.0.0 --port 8000 
 ```
 
 ## Getting started: With Docker
-a) Clone repository
 
-```md
-git clone https://github.com/mvarrone/fastapi-social-media-app.git
-cd fastapi-social-media-app
-```
-
-b) Start
+a) Start
 ```md
 docker compose -f .\docker-compose-dev.yml up -d
 ```
@@ -147,35 +100,6 @@ docker compose -f .\docker-compose-dev.yml down
     ```linux
     http://localhost:8000/redoc
     ```
-
-> Note 1: Credentials for documentation
-
-I have added some security level to the documentation. For that, both cases require the following credentials to be used:
-- Username: admin
-- Password: pass
-
-    Stored at the .env file
-
-> Note 2: About .env file
-
-A ```.env``` file has been provided to facilitate the implementation and testing of this project. The reason to include this file is that it is a publicly available project on the Internet
-
-> Note 3: About this project
-
-Project learnt from [fastapi-course](https://github.com/Sanjeev-Thiyagarajan/fastapi-course) by Sanjeev Thiyagarajan
-
-## Next improvements
-
-    1) Implement a simple frontend using Jinja2 Templates
-    2) Finish deploy to Digital Ocean
-    3) Postman:
-        - Create one example for each request
-        - Create Tests for each request (based on status code)
-        - Implement a Postman Flow
-        - Export collection data
-        - Export environment data
-    4) Implement roles: admin and user
-    5) Add documentation credentials to a db or json file (implement a hashed password)
 
 ## Contributing
 Contributions to this project are welcome. If you find any issues or have suggestions for improvement, feel free to open an issue or submit a pull request.
