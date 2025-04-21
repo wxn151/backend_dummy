@@ -1,7 +1,7 @@
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 
 title = "Back end con FastAPI"
 description = "Documentación de API"
