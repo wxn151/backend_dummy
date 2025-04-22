@@ -96,7 +96,7 @@ docker compose -f .\docker-compose-dev.yml down
 ## Documentation
 Swagger UI
 
-    ```linux
+    ```
     http://localhost:8000/docs
     ```
 
