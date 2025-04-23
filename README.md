@@ -134,8 +134,7 @@ MAIL=correo@tudominio.com
 PASSWORD=contraseña_correo
 
 # Enlaces del front-end
-RESET_LINK=https://tu-frontend.com/reset-password?token=
-ACTIVATE_LINK=https://tu-frontend.com/confirm-email?token=
+RESET_LINK=https://tu-frontend.com
 
 # Variables Docker
 POSTGRES_HOST=db
