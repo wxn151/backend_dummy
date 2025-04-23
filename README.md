@@ -76,13 +76,12 @@ POSTGRES_PASSWORD=tu_password
 POSTGRES_DB=tu_db
 ```
 
-### 2. Levantar contenedores
+### 2. Construir contenedores
 
 Es necesario tener ejecutandose Docker, previo a correr los comandos
 
 ```bash
 docker compose build
-docker compose up -d
 ```
 
 ### 3. Migracion
@@ -92,15 +91,18 @@ docker compose exec backend alembic revision --autogenerate -m "initial"
 docker compose exec backend alembic upgrade head
 ```
 
-### 4. Detener contenedores
+### 4. Levantar / detener contenedores
 
 ```bash
+# turn on
+docker compose up -d
+# shutdown
 docker compose down
 ```
 
 ---
 
-## 🏷️ Documentación
+## 🗃️ Documentación
 
 Swagger UI disponible en:
 
