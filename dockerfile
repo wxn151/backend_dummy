@@ -15,4 +15,4 @@ RUN pip install --upgrade pip \
 EXPOSE 8000
 
 # command to DEPLOY
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"]
