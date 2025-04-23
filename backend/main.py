@@ -38,12 +38,15 @@ app.include_router(user.router)
 def custom_openapi():
     if app.openapi_schema:
         return app.openapi_schema
+
     openapi_schema = get_openapi(
         title=app.title,
         version=app.version,
         description=app.description,
         routes=app.routes,
     )
+
+    # Define BearerAuth globalmente
     openapi_schema["components"]["securitySchemes"] = {
         "BearerAuth": {
             "type": "http",
@@ -51,10 +54,25 @@ def custom_openapi():
             "bearerFormat": "JWT"
         }
     }
-    for path in openapi_schema["paths"].values():
-        for operation in path.values():
-            operation["security"] = [{"BearerAuth": []}]
+
+    # Aplica BearerAuth solo a endpoints con la dependencia => `get_current_user` 
+    for route in app.routes:
+        if isinstance(route, APIRoute):
+            if any(
+                d.dependency == get_current_user
+                for d in route.dependant.dependencies
+            ):
+                path = openapi_schema["paths"].get(route.path)
+                if path:
+                    for operation in path.values():
+                        operation.setdefault("security", []).append({"BearerAuth": []})
+
     app.openapi_schema = openapi_schema
     return app.openapi_schema
 
 app.openapi = custom_openapi
+
+
+@app.get("/")
+def read_root():
+    return {"message": "Behemoth Backend"}
