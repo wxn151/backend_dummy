@@ -6,9 +6,9 @@
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 from fastapi.openapi.utils import get_openapi
-from fastapi import Depends
+# from fastapi import Depends
 from fastapi.routing import APIRoute
-from backend.utils.auth import get_current_user  # Depencias import
+# Depencias import
 from backend.core.config import description, title
 from .routers import (auth, root, user)
 
@@ -49,7 +49,7 @@ def custom_openapi():
         routes=app.routes,
     )
 
-    # Define BearerAuth globalmente
+    # Solo defines el esquema Bearer una vez
     openapi_schema["components"]["securitySchemes"] = {
         "BearerAuth": {
             "type": "http",
@@ -58,11 +58,11 @@ def custom_openapi():
         }
     }
 
-    # Aplica BearerAuth solo a endpoints con la dependencia => `get_current_user` 
+    # Aplica BearerAuth solo a endpoints que usen `get_current_user`
     for route in app.routes:
         if isinstance(route, APIRoute):
             if any(
-                d.dependency == get_current_user
+                getattr(d.call, "__name__", None) == "get_current_user"
                 for d in route.dependant.dependencies
             ):
                 path = openapi_schema["paths"].get(route.path)
