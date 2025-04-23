@@ -1,4 +1,4 @@
-# 🧠 Behemoth (Back-end con FastAPI)
+# App back-end (con FastAPI)
 
 Back-end básico construido con FastAPI y autenticación, ideal como base para una aplicación full-stack moderna.
 
@@ -6,7 +6,7 @@ Back-end básico construido con FastAPI y autenticación, ideal como base para u
 
 ---
 
-## 🚀 Funcionalidades
+## 🧠 Funcionalidades
 
 - Registro de usuarios, confirmación por correo y recuperación de contraseña (vía SMTP).
 - Autenticación con JWT y OAuth2.
