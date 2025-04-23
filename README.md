@@ -45,7 +45,7 @@ pip install -r requirements.txt
 
 Crear un archivo `.env` en la raíz del proyecto con las variables necesarias (ver plantilla al final del documento).
 
-### 5. Ejecutar migracion (con Alembic)
+### 5. Migracion (con Alembic)
 
 ```bash
 # Linux / windows 
@@ -76,19 +76,20 @@ POSTGRES_PASSWORD=tu_password
 POSTGRES_DB=tu_db
 ```
 
-### 2. Ejecutar migracion (con Alembic)
+### 2. Levantar contenedores
 
 Es necesario tener ejecutandose Docker, previo a correr los comandos
-```bash
-docker compose exec backend alembic revision --autogenerate -m "initial"
-docker compose exec backend alembic upgrade head
-```
-
-### 3. Levantar contenedores
 
 ```bash
 docker compose build
 docker compose up -d
+```
+
+### 3. Migracion
+
+```bash
+docker compose exec backend alembic revision --autogenerate -m "initial"
+docker compose exec backend alembic upgrade head
 ```
 
 ### 4. Detener contenedores
@@ -99,7 +100,7 @@ docker compose down
 
 ---
 
-## 📚 Documentación
+## 🏷️ Documentación
 
 Swagger UI disponible en:
 
