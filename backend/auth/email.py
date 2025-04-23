@@ -24,7 +24,7 @@ class GmailService(EmailService):
         server.quit()
 
 def build_confirmation_body(token: str) -> str:
-    link = f"{RESET}confirmation-email?token={token}"
+    link = f"{RESET}confirm-email?token={token}"
     return f""" 
 Welcome to Behemoth 👾
 
