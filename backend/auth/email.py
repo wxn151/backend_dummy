@@ -37,8 +37,8 @@ It will expire in 2 days.
 def send_password_reset_link(to_email: str, token: str, email_service: EmailService):
     link = f"{RESET}/reset-password?token={token}"
     body = f"""
-Your requested reset your Behemoth password (if your didn't, please ignore this).
-To continue, click the link below (is valid for 30 minutes):
+Your requested reset your Behemoth password.
+To continue, click the link below (if your didn't, please ignore this message):
 
 {link}
 """
