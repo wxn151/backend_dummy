@@ -6,6 +6,8 @@
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 from fastapi.openapi.utils import get_openapi
+from fastapi import Depends
+from backend.utils.auth import get_current_user  # Depencias import
 from backend.core.config import description, title
 from .routers import (auth, root, user)
 
