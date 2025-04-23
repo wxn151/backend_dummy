@@ -31,7 +31,7 @@ Welcome to Behemoth 👾
 Please confirm your email by clicking the link below:
 {link}
 
-This link will expire in 30 minutes.
+It will expire in 2 days.
 """
 
 def send_password_reset_link(to_email: str, token: str, email_service: EmailService):
