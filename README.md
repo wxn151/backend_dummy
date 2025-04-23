@@ -45,16 +45,12 @@ pip install -r requirements.txt
 
 Crear un archivo `.env` en la raíz del proyecto con las variables necesarias (ver plantilla al final del documento).
 
-### 5. Ejecutar migraciones con Alembic
+### 5. Ejecutar migracion (con Alembic)
 
 ```bash
-# Linux / macOS
+# Linux / windows 
 alembic revision --autogenerate -m "initial"
 alembic upgrade head
-
-# Windows
-python -m alembic revision --autogenerate -m "initial"
-python -m alembic upgrade head
 ```
 
 ### 6. Ejecutar la aplicación
@@ -72,6 +68,7 @@ uvicorn backend.main:app --host 0.0.0.0 --port 8000
 Asegurate de incluir también las siguientes variables para Docker:
 
 ```env
+DATABASE_URL=postgresql://postgres:tu_password@db:5432/tu_db
 POSTGRES_HOST=db
 POSTGRES_PORT=5432
 POSTGRES_USER=postgres
@@ -79,16 +76,25 @@ POSTGRES_PASSWORD=tu_password
 POSTGRES_DB=tu_db
 ```
 
-### 2. Levantar contenedores
+### 2. Ejecutar migracion (con Alembic)
 
+Es necesario tener ejecutandose Docker, previo a correr los comandos
 ```bash
-docker compose -f docker-compose-dev.yml up -d
+docker compose exec backend alembic revision --autogenerate -m "initial"
+docker compose exec backend alembic upgrade head
 ```
 
-### 3. Detener contenedores
+### 3. Levantar contenedores
 
 ```bash
-docker compose -f docker-compose-dev.yml down
+docker compose build
+docker compose up -d
+```
+
+### 4. Detener contenedores
+
+```bash
+docker compose down
 ```
 
 ---
