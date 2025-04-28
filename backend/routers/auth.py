@@ -35,18 +35,17 @@ def register(user: UserCreate, db: Session = Depends(get_db)):
         username=user.username,
         hashed_password=hash_password(user.password),
         role="user",
-        is_verified=True
+        is_verified=SMTP_CONFIGURATION == "deactivate"  # True if SMTP is OFF
     )
 
-    flag = SMTP_CONFIGURATION != "deactivate"
-    if flag:
-        new_user.is_verified = False
-        token = create_one_time_use_token(str(new_user.id))
-        smtp=GmailService()
-        send_confirmation_mail(new_user.email, token, smtp)
     db.add(new_user)
     db.commit()
-    db.refresh(new_user)
+    db.refresh(new_user)# <---- AFTER commit to get ID!!
+
+    if SMTP_CONFIGURATION != "deactivate":
+        token = create_one_time_use_token(str(new_user.id))
+        smtp = GmailService()
+        send_confirmation_mail(new_user.email, token, smtp)
 
     return {"message": "User pending to validation.", "smtp": SMTP_CONFIGURATION}
 

@@ -55,7 +55,15 @@ alembic revision --autogenerate -m "initial"
 alembic upgrade head
 ```
 
-### 6. Ejecutar la aplicación
+### 6. Descomentar codigo
+Del archivo ./core/config.py descomenta las lineas 3 y 4.
+
+```python
+from dotenv import load_dotenv
+load_dotenv()
+```
+
+### 7. Ejecutar la aplicación
 
 ```bash
 uvicorn backend.main:app --host 0.0.0.0 --port 8000

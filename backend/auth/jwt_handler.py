@@ -18,7 +18,7 @@ def create_access_token(data: dict, expires_delta: timedelta = timedelta(minutes
 def decode_access_token(token: str, otu: bool = False):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        print(payload)
+        # print(payload)
         if otu:
             if payload.get("type") != "OTU":
                 raise HTTPException(status_code=400, detail="Ups, not valid token.")
