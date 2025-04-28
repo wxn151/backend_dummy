@@ -8,9 +8,10 @@ Back-end básico construido con FastAPI y autenticación, ideal como base para u
 
 ## 👾 Funcionalidades
 
-- Registro de usuarios, confirmación por correo y recuperación de contraseña (vía SMTP).
-- Autenticación con JWT y OAuth2.
-- Migraciones con Alembic (PostgreSQL).
+- Confirmación por correo y recuperación de contraseña vía SMTP (es posible desactivarlo).
+- Autenticación con JWT y OAuth2 (session).
+- Migración con Alembic (PostgreSQL).
+- Cargar articulos favoritos y eliminarlos.
 
 ---
 
@@ -44,6 +45,7 @@ pip install -r requirements.txt
 ### 4. Crear archivo `.env`
 
 Crear un archivo `.env` en la raíz del proyecto con las variables necesarias (ver plantilla al final del documento).
+En caso de que el servidor SMTP no lo necesites, define SMTP_CONFIGURATION=deactivate.
 
 ### 5. Migracion (con Alembic)
 
@@ -76,12 +78,14 @@ POSTGRES_PASSWORD=tu_password
 POSTGRES_DB=tu_db
 ```
 
-### 2. Construir contenedores
+### 2. Construir y correr contenedores
 
 Es necesario tener ejecutandose Docker, previo a correr los comandos
 
 ```bash
 docker compose build
+# iniciar el docker
+docker compose up -d
 ```
 
 ### 3. Migracion
@@ -91,11 +95,9 @@ docker compose exec backend alembic revision --autogenerate -m "initial"
 docker compose exec backend alembic upgrade head
 ```
 
-### 4. Levantar / detener contenedores
+### 4. Detener contenedores (opcional)
 
 ```bash
-# turn on
-docker compose up -d
 # shutdown
 docker compose down
 ```
@@ -144,6 +146,9 @@ PASSWORD=contraseña_correo
 
 # Enlaces del front-end
 RESET_LINK=https://tu-frontend.com
+
+# STMP opcional (en caso de que desees tener activo el servicio de SMTP, define como activate)
+SMTP_CONFIGURATION=deactivate
 
 # Variables Docker
 POSTGRES_HOST=db
