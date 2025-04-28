@@ -15,13 +15,13 @@ Back-end básico construido con FastAPI y autenticación, ideal como base para u
 
 ---
 
-## 🛠️ Iniciar sin Docker
+## Iniciar sin Docker
 
 ### 1. Clonar el repositorio
 
 ```bash
 git clone https://github.com/wxn151/backend_dummy.git
-cd back_dummy
+cd backend_dummy
 ```
 
 ### 2. Crear y activar el entorno virtual
@@ -63,7 +63,7 @@ uvicorn backend.main:app --host 0.0.0.0 --port 8000
 
 ---
 
-## 🐳 Iniciar con Docker
+## Iniciar con Docker
 
 ### 1. Editar archivo `.env`
 
@@ -104,7 +104,7 @@ docker compose down
 
 ---
 
-## 🗃️ Documentación
+## Documentación
 
 Swagger UI disponible en:
 
