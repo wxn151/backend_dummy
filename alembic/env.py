@@ -12,7 +12,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 # Importar Base y modelos
 from backend.db import Base
-from backend.db.models import user  # Esto hace que Alembic vea el modelo User
+from backend.db.models import user
+from backend.db.models import article  # Esto hace que Alembic vea el modelo User
 
 # DO an check IN
 print("Modelos detectados:", Base.metadata.tables.keys())

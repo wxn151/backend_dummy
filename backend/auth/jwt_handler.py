@@ -7,7 +7,7 @@ from backend.core.config import SECRET_KEY, ALGORITHM
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
 
 # create JWT
-def create(data: dict, expires_delta: timedelta = timedelta(minutes=20)):
+def create_access_token(data: dict, expires_delta: timedelta = timedelta(minutes=20)):
     # ACCESS_TOKEN_EXPIRE_MINUTES
     to_encode = data.copy()
     expire = datetime.utcnow() + expires_delta
@@ -15,7 +15,7 @@ def create(data: dict, expires_delta: timedelta = timedelta(minutes=20)):
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
 # decode JWT
-def decode(token: str, otu: bool = False):
+def decode_access_token(token: str, otu: bool = False):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         print(payload)
@@ -27,7 +27,7 @@ def decode(token: str, otu: bool = False):
         raise HTTPException(status_code=401, detail=f"Invalid token or expired")
 
 def current_jwt(token: str = Depends(oauth2_scheme)):
-    payload = decode(token)
+    payload = decode_access_token(token)
     return payload
 
 def create_one_time_use_token(id: str) -> str:

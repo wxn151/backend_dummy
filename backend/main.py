@@ -6,11 +6,9 @@
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 from fastapi.openapi.utils import get_openapi
-# from fastapi import Depends
 from fastapi.routing import APIRoute
-# Depencias import
 from backend.core.config import description, title
-from .routers import (auth, root, user)
+from .routers import (auth, user, article)
 
 app = FastAPI(
     title=title,
@@ -33,10 +31,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(root.router)
 app.include_router(auth.router)
 app.include_router(user.router)
-# app.include_router(docs.router)
+app.include_router(article.router)
 
 def custom_openapi():
     if app.openapi_schema:

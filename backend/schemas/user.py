@@ -23,10 +23,6 @@ class UserOut(BaseModel):
     class Config:
         orm_mode = True
 
-class UpdatePassword(BaseModel):
-    current_password: str = Field(..., min_length=8)
-    new_password: str = Field(..., min_length=8)
-
 class ToggleActive(BaseModel):
     is_active: bool
 

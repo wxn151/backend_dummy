@@ -1,19 +1,22 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-
 from sqlalchemy.ext.declarative import declarative_base
-import os
+from backend.core.config import DATABASE_URL
 
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./test.db")
-
+# Create DB engine
 engine = create_engine(DATABASE_URL)
+
+# Create a configured session class
 SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
 
+# Create base class for declarative models
 Base = declarative_base()
 
+# Dependency for FastAPI routes
 def get_db():
     db = SessionLocal()
     try:
         yield db
     finally:
         db.close()
+
