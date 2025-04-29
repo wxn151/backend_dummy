@@ -45,7 +45,7 @@ pip install -r requirements.txt
 ### 4. Crear archivo `.env`
 
 Crear un archivo `.env` en la raíz del proyecto con las variables necesarias (ver plantilla al final del documento).
-En caso de que el servidor SMTP no lo necesites, define SMTP_CONFIGURATION=deactivate.
+En caso de que desees descartar el servidor SMTP define SMTP_CONFIGURATION=deactivate.
 
 ### 5. Migracion (con Alembic)
 
@@ -56,7 +56,7 @@ alembic upgrade head
 ```
 
 ### 6. Descomentar codigo
-Del archivo ./core/config.py descomenta las lineas 3 y 4.
+Del archivo ./backend/core/config.py descomenta las lineas 3 y 4.
 
 ```python
 from dotenv import load_dotenv
